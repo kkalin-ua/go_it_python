@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from typing import ItemsView
 
 users = [{
     "Bob":{"phones":["30674567676",],"birthday":"07/02/1990"},
@@ -58,7 +59,11 @@ def get_birthdays_per_week(users):
     birthdays_list_for_week['Tuesday'] = tuesday1
     birthdays_list_for_week['Friday'] = friday1
 
-    return birthdays_list_for_week
+
+    for day, birt_date in birthdays_list_for_week.items():
+        print(day + ": " + (", ".join(birt_date)))
+
+    return
 
 
 
