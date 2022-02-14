@@ -15,7 +15,7 @@ def input_error(function):
         try:
             return function(string)
         except KeyError:
-            print("Enter user name")
+            print("No such name")
         except ValueError:
             print("Give me name and phone, please")
         except IndexError:
@@ -25,13 +25,16 @@ def input_error(function):
 
 @input_error
 def add_new_contact(command):
-    global users
-    new_name = command.lower().split()[1]
-    new_nubber = command.lower().split()[2]
 
-    for user in users:
-        cont = [x.strip() for x in new_nubber.split(',')]
-        user[new_name] = {"phones": cont}
+    if len(command) > 2:
+        new_name = command.lower().split()[1]
+        new_nubber = command.lower().split()[2]
+
+        for user in users:
+            cont = [x.strip() for x in new_nubber.split(',')]
+            user[new_name.capitalize()] = {"phones": cont}
+    else:
+        print("Give me name and phone, please")
 
 
 @input_error
@@ -64,17 +67,24 @@ def show_all_command():
 def show_phone(command):
     name = command.lower().split()[1]
     for i in users:
-        for nam, val in i.items():
-            if name == nam.lower():
-                print(nam + ": " + (", ".join(val["phones"])))
+        if len(command) < 2:
+            print("Give me name, please")
+
+        if name.capitalize() not in i.keys():
+            raise KeyError
+
+        else:
+            for nam, val in i.items():
+                if name == nam.lower():
+                    print(nam + ": " + (", ".join(val["phones"])))
 
 
 # **************************
 EXIT_COMMANDS = ("good bye", "close", "exit", "bye")
-ADD_COMMANDS = ("add", "+")
+ADD_COMMANDS = ("add", "+")  # ++++++++++++++++++++
 GREETING_COMMANDS = ("hello", "alloha",)
 SHOW_PHONE_COMMANDS = ("phone",)
-SHOW_ALL_COMMANDS = ("show all",)
+SHOW_ALL_COMMANDS = ("show all",)  # **************************
 CHANGE_COMMANDS = ("change",)
 
 
@@ -102,14 +112,14 @@ def main():
             comma = command.lower().split()[0]
             command_len = len(command.split())
 
-            if comma in ADD_COMMANDS and command_len >= 3:
+            if comma in ADD_COMMANDS:
                 get_handler(ADD_COMMANDS)(command)
 #                print(users)
 
-            elif comma in SHOW_PHONE_COMMANDS and command_len >= 2:
+            elif comma in SHOW_PHONE_COMMANDS:
                 get_handler(SHOW_PHONE_COMMANDS)(command)
 
-            elif comma in CHANGE_COMMANDS and command_len >= 3:
+            elif comma in CHANGE_COMMANDS:
                 get_handler(CHANGE_COMMANDS)(command)
 #                print(users)
 
