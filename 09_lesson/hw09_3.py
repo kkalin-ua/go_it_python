@@ -71,10 +71,10 @@ def show_phone(command):
 
 # **************************
 EXIT_COMMANDS = ("good bye", "close", "exit", "bye")
-ADD_COMMANDS = ("add", "+")  # ++++++++++++++++++++
+ADD_COMMANDS = ("add", "+")
 GREETING_COMMANDS = ("hello", "alloha",)
 SHOW_PHONE_COMMANDS = ("phone",)
-SHOW_ALL_COMMANDS = ("show all",)  # **************************
+SHOW_ALL_COMMANDS = ("show all",)
 CHANGE_COMMANDS = ("change",)
 
 
