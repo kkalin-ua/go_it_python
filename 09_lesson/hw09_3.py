@@ -15,11 +15,11 @@ def input_error(function):
         try:
             return function(string)
         except KeyError:
-            return "Enter user name"
+            print("Enter user name")
         except ValueError:
-            return "Give me name and phone, please"
+            print("Give me name and phone, please")
         except IndexError:
-            return "Give me name and phone, please"
+            print("Give me name and phone, please")
     return inner
 
 

@@ -120,12 +120,9 @@ def main():
                 exit_command()
                 break
 
-            else:
-                print("Enter a correct command")
+
+# if __name__ == "__main__":
+#     main()
 
 
-if __name__ == "__main__":
-    main()
-
-
-# main()
+main()
